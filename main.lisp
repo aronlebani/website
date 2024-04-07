@@ -67,11 +67,16 @@
            ,@body)
          (:hr)
          (:footer
-           "I acknowledge the Wurundjeri people as the Traditional custodians of
-            the land on which I live, work, create, play and learn. I pay my
-            respects to their elders past and present, and to all First Nations
-            people and communities."
+           (:p
+             "I acknowledge the Wurundjeri people as the Traditional custodians of
+              the land on which I live, work, create, play and learn. I pay my
+              respects to their elders past and present, and to all First Nations
+              people and communities.")
            (:br)
+           (:p
+             "The source code for this website can be found "
+             (:a :href "https://github.com/aronlebani/lebani.dev.git" :target "_blank" "here")
+             ".")
            (:p "(c) " (str (get-year)) " Aron Lebani"))))))
 
 ;;; --- Pages ---
