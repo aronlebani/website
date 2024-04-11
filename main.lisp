@@ -109,7 +109,7 @@
       (:li
         (:a :href "https://au.linkedin.com/in/aron-lebani-50861890" :target "_blank" "Linkedin"))
       (:li
-        (:a :href "https://instagram.com/lebani.amps" :target "_blank" "Instgram")))))
+        (:a :href "https://instagram.com/lebani.amps" :target "_blank" "Instagram")))))
 
 (defroute (now "/now")
   (layout (:title "Now")

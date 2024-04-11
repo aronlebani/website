@@ -20,3 +20,4 @@ deploy:
 	chmod -R +x server
 	rsync -rvsp --delete --progress \
 		public server root@lebani.dev:/var/lebani.dev/www
+	ssh root@lebani.dev 'systemctl restart server.service'
