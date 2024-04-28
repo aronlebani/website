@@ -12,6 +12,7 @@
                 :easy-acceptor
                 :start
                 :stop
+                :return-code*
                 :*dispatch-table*)
   (:import-from :cl-who
                 :with-html-output-to-string
@@ -79,6 +80,20 @@
              ".")
            (:p "(c) " (str (get-year)) " Aron Lebani"))))))
 
+(defmacro error-layout ((&key title) &body body)
+  `(with-html-output-to-string (out nil :prologue t)
+     (:html :lang "en"
+       (:head
+         (:meta :http-equiv "Content-Type" :content "text/html;charset=utf-8")
+         (:meta :name "viewport" :content "width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0")
+         (:title ,title)
+         (:link :rel "stylesheet" :type "text/css" :href "public/index.css")
+         (:link :rel "icon" :type "image/png" :href "public/favicon-16x16.png" :sizes "16x16")
+         (:link :rel "icon" :type "image/png" :href "public/favicon-32x32.png" :sizes "32x32"))
+       (:body
+         (:main
+           ,@body)))))
+
 ;;; --- Pages ---
 
 (defroute (index "/")
@@ -114,6 +129,14 @@
 (defroute (now "/now")
   (layout (:title "Now")
     (:h1 "/now")
+    (:p "April 28, 2024")
+    (:p
+      (:a :href "/make-coffee" "Make some coffee"))
+    (:p "April 9, 2024")
+    (:p
+      "TIL: The characters " (:code "^") " and " (:code "$") " used to move to
+       the start and end of the line in vim are the same as the regex characters
+       that match against the start and end of a string.")
     (:p "April 7, 2024")
     (:p
       "I plan on using this space to share small updates with the world. It
@@ -166,6 +189,17 @@
         (:a :href "http://www.bom.gov.au/vic/forecasts/melbourne.shtml" :target "_blank" "Melbourne forecast"))
       (:li
         (:a :href "https://tramtracker.com.au" :target "_blank" "Tramtracker")))))
+
+(defroute (make-coffee "/make-coffee")
+  (setf (return-code*) 418)
+  (error-layout (:title "Error 418: I'm a teapot")
+    (:h1 "Error 418: I'm a teapot.")
+    (:p "Tip me over and pour me out." (:br) (:a :href "/" "Back to homepage") ".")
+    (:small
+      (:a :href "https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol" "Why am I seeing this?")
+      " Find out "
+      (:a :href "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418" "more")
+      ".")))
 
 ;;; --- Serve static files ---
 
