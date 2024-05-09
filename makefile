@@ -1,8 +1,11 @@
-LISP ?= sbcl
+LISP = sbcl
+EXE = server
+SERVER = root@lebani.dev
+DEST = /var/lebani.dev/www
 
-.PHONY: run build clean deploy deploy-dry-run
+.PHONY: debug build clean deploy
 
-run:
+debug:
 	$(LISP) --load website.asd \
 		--eval '(ql:quickload :website)' \
 		--eval '(website:main)'
@@ -14,10 +17,9 @@ build:
 		--eval '(quit)'
 
 clean:
-	rm server
+	rm $(EXE)
 
 deploy:
-	chmod -R +x server
-	rsync -rvsp --delete --progress \
-		public server root@lebani.dev:/var/lebani.dev/www
-	ssh root@lebani.dev 'systemctl restart server.service'
+	chmod +x $(EXE)
+	rsync -rvsp --delete --progress public $(EXE) $(SERVER):$(DEST)
+	ssh $(SERVER) 'systemctl restart $(EXE).service'
