@@ -129,15 +129,30 @@
 (defroute (now "/now")
   (layout (:title "Now")
     (:h1 "/now")
-    (:p "April 28, 2024")
+    (:h2 "May 15, 2024")
+    (:p "I discovered a handy alias.")
+    (:figure
+      (:pre
+        (:code
+          "sudo_roulette() {
+    if [ $ ((1 + $RANDOM % 100)) == 99 ]; then
+        sudo rm -rf /
+    else
+        sudo $@
+    fi
+}
+
+alias sudo=sudo_roulette"))
+      (:figurecaption "Please don't actually do this :grimace:"))
+    (:h2 "April 28, 2024")
     (:p
       (:a :href "/make-coffee" "Make some coffee"))
-    (:p "April 9, 2024")
+    (:h2 "April 9, 2024")
     (:p
       "TIL: The characters " (:code "^") " and " (:code "$") " used to move to
        the start and end of the line in vim are the same as the regex characters
        that match against the start and end of a string.")
-    (:p "April 7, 2024")
+    (:h2 "April 7, 2024")
     (:p
       "I plan on using this space to share small updates with the world. It
        might be something short I've written, what I'm up to at the moment,
