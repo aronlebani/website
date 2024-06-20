@@ -3,18 +3,47 @@
 	--accent-colour: darkslategrey;
 }
 
+@font-face {
+	font-family: CourierPrime;
+	font-weight: normal;
+	font-style: normal;
+	src: url(./courier-prime.regular.ttf)
+}
+
+@font-face {
+	font-family: CourierPrime;
+	font-weight: bold;
+	font-style: normal;
+	src: url(./courier-prime.bold.ttf)
+}
+
+@font-face {
+	font-family: CourierPrime;
+	font-weight: normal;
+	font-style: italic;
+	src: url(./courier-prime.italic.ttf)
+}
+
+@font-face {
+	font-family: CourierPrime;
+	font-weight: bold;
+	font-style: italic;
+	src: url(./courier-prime.bold-italic.ttf)
+}
+
 body {
 	margin: 2rem auto;
 	max-width: 40rem;
 	padding: 0 0.625rem;
-	line-height: 1.6;
+	line-height: 1.5;
 	font-size: 18px;
-	font-family: monospace;
+	font-family: CourierPrime, monospace;
 	background-color: var(--bg-colour);
 }
 
 h1, h2, h3 {
 	line-height: 1.2;
+	font-family: CourierPrime, monospace;
 }
 
 h2 {

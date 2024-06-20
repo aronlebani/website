@@ -18,6 +18,12 @@
                 :with-html-output-to-string
                 :str
                 :html-mode)
+  (:import-from :bt
+                :join-thread
+                :all-threads
+                :thread-name)
+  (:import-from :uiop
+                :quit)
   (:export :main))
 
 (in-package :website)
@@ -129,12 +135,13 @@
 (defroute (now "/now")
   (layout (:title "Now")
     (:h1 "/now")
-    (:h2 "May 15, 2024")
-    (:p "I discovered a handy alias.")
-    (:figure
-      (:pre
-        (:code
-          "sudo_roulette() {
+    (:section :id "2024-05-15"
+      (:h2 "May 15, 2024")
+      (:p "I discovered a handy alias.")
+      (:figure
+        (:pre
+          (:code
+            "sudo_roulette() {
     if [ $ ((1 + $RANDOM % 100)) == 99 ]; then
         sudo rm -rf /
     else
@@ -143,21 +150,24 @@
 }
 
 alias sudo=sudo_roulette"))
-      (:figurecaption "Please don't actually do this :grimace:"))
-    (:h2 "April 28, 2024")
-    (:p
-      (:a :href "/make-coffee" "Make some coffee"))
-    (:h2 "April 9, 2024")
-    (:p
-      "TIL: The characters " (:code "^") " and " (:code "$") " used to move to
-       the start and end of the line in vim are the same as the regex characters
-       that match against the start and end of a string.")
-    (:h2 "April 7, 2024")
-    (:p
-      "I plan on using this space to share small updates with the world. It
-       might be something short I've written, what I'm up to at the moment,
-       the latest book I'm reading, a photo I've taken... I'll try to keep
-       adding to it over time. See how we go.")))
+        (:figurecaption "Please don't actually do this :grimace:")))
+    (:section :id "2024-04-28"
+      (:h2 "April 28, 2024")
+      (:p
+        (:a :href "/make-coffee" "Make some coffee")))
+    (:section :id "2024-04-09"
+     (:h2 "April 9, 2024")
+     (:p
+       "TIL: The characters " (:code "^") " and " (:code "$") " used to move to
+        the start and end of the line in vim are the same as the regex characters
+        that match against the start and end of a string."))
+    (:section :id "2024-04-07"
+      (:h2 "April 7, 2024")
+      (:p
+        "I plan on using this space to share small updates with the world. It
+         might be something short I've written, what I'm up to at the moment,
+         the latest book I'm reading, a photo I've taken... I'll try to keep
+         adding to it over time. See how we go."))))
 
 (defroute (reading "/reading")
   (layout (:title "Reading")
@@ -191,8 +201,6 @@ alias sudo=sudo_roulette"))
       (:li
         (:a :href "https://betaapp.fastmail.com/mail/Inbox/?u=18e1403b" :target "_blank" "Webmail"))
       (:li
-        (:a :href "https://files.lebani.dev" :target "_blank" "Files"))
-      (:li
         (:a :href "https://github.com/aronlebani?tab=repositories" :target "_blank" "Github"))
       (:li
         (:a :href "https://www.shazam.com" :target "_blank" "Shazam"))
@@ -201,9 +209,7 @@ alias sudo=sudo_roulette"))
       (:li
         (:a :href "https://melbourneindievoices.com.au/members" :target "_blank" "MIV"))
       (:li
-        (:a :href "http://www.bom.gov.au/vic/forecasts/melbourne.shtml" :target "_blank" "Melbourne forecast"))
-      (:li
-        (:a :href "https://tramtracker.com.au" :target "_blank" "Tramtracker")))))
+        (:a :href "http://www.bom.gov.au/vic/forecasts/melbourne.shtml" :target "_blank" "Melbourne forecast")))))
 
 (defroute (make-coffee "/make-coffee")
   (setf (return-code*) 418)
@@ -224,26 +230,24 @@ alias sudo=sudo_roulette"))
 
 (defparameter *port* 4000)
 
-(defvar *server* (make-instance 'easy-acceptor :port *port*))
+(defvar *server*
+  (make-instance 'easy-acceptor :port *port*))
 
 (defun main ()
   (format t "Hunchentoot server is started~&")
   (format t "Listenting on localhost:~a~&" *port*)
   (setf (html-mode) :html5)
   (start *server*)
-  (handler-case (bt:join-thread
+  (handler-case (join-thread
                   (find-if (lambda (th)
-                             (search "hunchentoot" (bt:thread-name th)))
-                           (bt:all-threads)))
+                             (search "hunchentoot" (thread-name th)))
+                           (all-threads)))
     ; Catch C-c
-    (#+sbcl sb-sys:interactive-interrupt
-     #+ccl  ccl:interrupt-signal-condition
-     #+clisp system::simple-interrupt-condition
-     #+ecl ext:interactive-interrupt
-     #+allegro excl:interrupt-signal
-     () (progn
-          (format *error-output* "Aborting~&")
-          (stop *server*)
-          (uiop:quit)))
+    (sb-sys:interactive-interrupt ()
+      (progn
+        (format *error-output* "Aborting~&")
+        (stop *server*)
+      (quit)))
     ; Something went wrong
-    (error (c) (format t "An unknown error occured:~&~a~&" c))))
+    (error (c)
+      (format t "An unknown error occured:~&~a~&" c))))
