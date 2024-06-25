@@ -1,6 +1,6 @@
 (asdf:defsystem :website
   :build-operation program-op
-  :build-pathname "server"
+  :build-pathname "website"
   :entry-point "website:main"
   :serial t
   :depends-on ("hunchentoot"

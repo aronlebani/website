@@ -1,9 +1,7 @@
 include .env
 
 LISP = sbcl
-EXE = server
-SERVER = ${SERVER}
-DEST = ${DEST}
+EXE = website
 
 .PHONY: debug build clean deploy
 
@@ -23,5 +21,5 @@ clean:
 
 deploy:
 	chmod +x $(EXE)
-	rsync -rvsp --delete --progress public $(EXE) $(SERVER):$(DEST)
-	ssh $(SERVER) 'systemctl restart $(EXE).service'
+	rsync -rvsp --delete --progress public $(EXE) ${SERVER}:$(DEST)
+	ssh ${SERVER} 'systemctl restart $(EXE).service'

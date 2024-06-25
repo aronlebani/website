@@ -1,3 +1,0 @@
-lebani.dev {
-	reverse_proxy :4000
-}
