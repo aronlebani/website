@@ -1,7 +1,9 @@
+include .env
+
 LISP = sbcl
 EXE = server
-SERVER = root@lebani.dev
-DEST = /var/lebani.dev/www
+SERVER = ${SERVER}
+DEST = ${DEST}
 
 .PHONY: debug build clean deploy
 
