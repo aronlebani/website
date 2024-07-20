@@ -47,10 +47,14 @@ h1, h2, h3 {
 }
 
 h2 {
-	font-size: 1.125rem;
+	font-size: 1.5rem;
 }
 
-li {
+h3 {
+	font-size: 1.25rem;
+}
+
+ul li {
 	list-style-type: "- ";
 }
 
@@ -112,4 +116,15 @@ figurecaption {
 	color: white;
 	padding-left: 1rem;
 	border-top: 1px solid black;
+}
+
+.horizontal-list {
+	display: flex;
+	justify-content: center;
+	padding-left: 0;
+}
+
+.horizontal-list li {
+	list-style-type: none;
+	padding: 0 0.75rem;
 }

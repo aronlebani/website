@@ -79,7 +79,6 @@
               the land on which I live, work, create, play and learn. I pay my
               respects to their elders past and present, and to all First Nations
               people and communities.")
-           (:br)
            (:p
              "The source code for this website can be found "
              (:a :href "https://github.com/aronlebani/lebani.dev.git" :target "_blank" "here")
@@ -106,9 +105,11 @@
   (layout (:title "Aron Lebani")
     (:h1 "Hello, I'm Aron.")
     (:p
-      "I'm a computer programmer & a creative. You can get in touch with me at "
-      (:a :href "mailto:aron@lebani.dev" "aron@lebani.dev") ". Here are some
-      things I've made.")
+      "I'm a computer programmer & a creative based in Melbourne (Naarm). I
+       make websites and other software for creatives, local businesses,
+       not-for-profits, and the community. You can get in touch with me at "
+       (:a :href "mailto:aron@lebani.dev" "aron@lebani.dev") ". Here are some
+       things I've made.")
     (:ul
       (:li
         (:a :href "https://rowenawise.com" :target "_blank" "rowenawise.com"))
@@ -120,21 +121,52 @@
         (:a :href "https://instagram.com/lebani.amps" :target "_blank" "lebani.amps"))
       (:li "more stuff in the works..."))
     (:p
-      "Things I want to do more of: build awesome open-source projects; make
-       more fun websites for awesome people; learn lots.")
-    (:p
-      "Here are the usual suspects.")
-    (:ul
+      "Things I love: computers, art, philosophy, nature. Things I want to do
+       more of: build and contribute to open-source projects, make fun websites
+       for awesome people, learn lots.")
+    (:p "Here are the places you can find me online.")
+    (:ul :class "horizontal-list"
+      (:li
+        (:a :href "mailto:aron@lebani.dev" :target "_blank" "Email"))   
       (:li
         (:a :href "https://github.com/aronlebani" :target "_blank" "Github"))
       (:li
-        (:a :href "https://au.linkedin.com/in/aron-lebani-50861890" :target "_blank" "Linkedin"))
-      (:li
-        (:a :href "https://instagram.com/lebani.amps" :target "_blank" "Instagram")))))
+        (:a :href "https://au.linkedin.com/in/aron-lebani-50861890" :target "_blank" "Linkedin")))))
 
 (defroute (now "/now")
   (layout (:title "Now")
     (:h1 "/now")
+    (:section :id "2024-07-20"
+      (:h2 "July 20, 2024")
+      (:p "We're right in the thick of winter here in Melbourne. Recently I
+           asked a dear friend of mine to make a list of 10 things they love
+           about winter, in order to help stay positive in this dreary time of
+           year. I thought maybe I should make one of my own, so here it is.")
+      (:h3 "10 things I love about winter")
+      (:ol
+        (:li "Going for a walk at night after it's been raining. Seeing the
+              glistening of all the different coloured lights reflecting off
+              the water on the streets.")
+        (:li "Listening to records. The soft crackle of old vinyl breaking
+              the moody silence between tracks, for some reason sounds so much
+              better in winter.")
+        (:li "The food.")
+        (:li "The outfits.")
+        (:li "Endless cups of tea.")
+        (:li "An excuse to stay at home and read or write or watch a movie.")
+        (:li "Rugging up with blankets and scarfes and gloves and sharing music
+              and stories around a fire at night time.")
+        (:li "The feeling of getting home after a freezing cold walk or bike
+              ride. Slowly defrosting when your nose and ears are numb from
+              the cold.")
+        (:li "Waking up, making coffee, crawling back into bed to drink your
+              coffee.")
+        (:li "Moody music while it's pouring with rain outside. Listening to
+              the sound of the rain, feeling grateful for being warm and dry,
+              feeling the mood in your whole body.")
+        (:li "That singular moment when the sun comes out from hiding. Feeling
+              it's rays penetrating deep into your body and warming your
+              soul.")))
     (:section :id "2024-05-15"
       (:h2 "May 15, 2024")
       (:p "I discovered a handy alias.")

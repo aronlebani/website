@@ -1,25 +1,26 @@
 include .env
 
 LISP = sbcl
-EXE = website
 
-.PHONY: debug build clean deploy
+.PHONY: debug start build clean deploy
 
 debug:
 	$(LISP) --load website.asd \
 		--eval '(ql:quickload :website)' \
 		--eval '(website:main)'
 
-build:
+start:
 	$(LISP) --load website.asd \
 		--eval '(ql:quickload :website)' \
-		--eval '(asdf:make :website)' \
-		--eval '(quit)'
+		--eval '(website:main)'
 
 clean:
-	rm $(EXE)
+	rm *.fasl
 
 deploy:
-	chmod +x $(EXE)
-	rsync -rvsp --delete --progress public $(EXE) ${SERVER}:$(DEST)
-	ssh ${SERVER} 'systemctl restart $(EXE).service'
+	rsync -rvsp \
+		--delete \
+		--progress \
+		README.md LICENSE website.asd Makefile main.lisp public \
+		${SERVER}:${DEST}
+	ssh ${SERVER} 'systemctl restart website.service'
