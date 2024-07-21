@@ -171,6 +171,48 @@
 (defroute (now "/now")
   (layout (:title "Now")
     (:h1 "/now")
+    (:section :id "2024-07-21"
+      (:h2 "July 21, 2024")
+      (:h3 "Wabi-sabi and dotfiles")
+      (:p "One of the things I love about computers and open-source software is
+           that you can customize " (:em "everything") ". If you don't like how
+           something looks or functions, you can just tweak it to your hearts
+           content. If the software doesn't offer a config option for it (which
+           is rare, as a lot of open-source software is extremely flexible),
+           you can always modify the source code yourself. There is no end. In
+           a world where I constantly feel overwhelmed by how complex things
+           are, and how little control I have of the world around me, this is a
+           very appealing respite.")
+      (:p "I've recently found myself with a lot more free time than usual, and
+           I've been spending a lot of time customising my "
+           (:a :href "https://github.com/aronlebani/dotfiles" "dotfiles") ".
+           I've also been thinking a lot about the Japanese philosophy of "
+           (:a :href "https://en.wikipedia.org/wiki/Wabi-sabi" "Wabi-sabi") ".
+           By the work of the higher powers that be, this "
+           (:a :href "https://arkadiuszchmura.com/posts/stop-perfecting-your-config" "article")
+          " came into my RSS feed the other day. It was a bit of a much needed
+           slap in the face. It talks about why we should stop spending so
+           much time configuring everything, and even delves into the deeper,
+           more philosophical reasons for doing this.")
+      (:p "There is a " (:a :href "https://buttondown.email/hillelwayne/archive/keep-perfecting-your-config" "counter argument")
+          " to this. Which is only sort of a counter argument, in that it
+           argues that it's okay to spend time making tweaks which make you
+           more productive, but not to spend time making superficial tweaks
+           such as colours and aesthetics")
+      (:p "I'm also a creative, and aesthetics are important to me, which makes
+           this a hard pill to swallow. Having an environment that appeals to
+           me aesthetically makes me happier, so surely more productive? But
+           alas, the Wabi-sabi principle applies specifically to aesthetics.
+           There is beauty in inconsistency, in imperfection. Some of my best
+           art comes from the tightest of constraints. So maybe I should
+           embrace this?")
+      (:p "I took a little advice from both articles - I stripped a bunch of
+           stuff out of my dotfiles which I don't need. I'm rolling with the
+           imperfect defaults. I made one final commit - "
+           (:a :href "https://github.com/aronlebani/dotfiles/commit/7d5573d6ed7b1a209ec400af2dfe812181a2fa99" "Wabi-sabi (7d5573d)") ".
+           My goal is to not make another commit for at least a month.
+           Hopefully putting this short story out into the world will hold me
+           accountable to that goal."))
     (:section :id "2024-07-20"
       (:h2 "July 20, 2024")
       (:p "We're right in the thick of winter here in Melbourne. Recently I
