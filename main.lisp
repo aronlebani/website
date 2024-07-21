@@ -68,21 +68,20 @@
            (:nav
              (:ul
                (:li (:a :href "/" "Home"))
+               (:li (:a :href "/projects" "Projects"))
                (:li (:a :href "/reading" "Reading"))
                (:li (:a :href "/now" "/now")))))
          (:main
            ,@body)
          (:hr)
          (:footer
-           (:p
-             "I acknowledge the Wurundjeri people as the Traditional custodians of
-              the land on which I live, work, create, play and learn. I pay my
-              respects to their elders past and present, and to all First Nations
-              people and communities.")
-           (:p
-             "The source code for this website can be found "
-             (:a :href "https://github.com/aronlebani/lebani.dev.git" :target "_blank" "here")
-             ".")
+           (:p "I acknowledge the Wurundjeri people as the Traditional
+                custodians of the land on which I live, work, create, play and
+                learn. I pay my respects to their elders past and present, and
+                to all First Nations people and communities.")
+           (:p "The source code for this website can be found "
+               (:a :href "https://github.com/aronlebani/lebani.dev.git" :target "_blank" "here")
+               ".")
            (:p "(c) " (str (get-year)) " Aron Lebani"))))))
 
 (defmacro error-layout ((&key title) &body body)
@@ -104,12 +103,11 @@
 (defroute (index "/")
   (layout (:title "Aron Lebani")
     (:h1 "Hello, I'm Aron.")
-    (:p
-      "I'm a computer programmer & a creative based in Melbourne (Naarm). I
-       make websites and other software for creatives, local businesses,
-       not-for-profits, and the community. You can get in touch with me at "
-       (:a :href "mailto:aron@lebani.dev" "aron@lebani.dev") ". Here are some
-       things I've made.")
+    (:p "I'm a computer programmer & a creative based in Melbourne (Naarm). I
+         make websites and other software for creatives, local businesses,
+         not-for-profits, and the community. You can get in touch with me at "
+         (:a :href "mailto:aron@lebani.dev" "aron@lebani.dev") ". Here are some
+         things I've made.")
     (:ul
       (:li
         (:a :href "https://rowenawise.com" :target "_blank" "rowenawise.com"))
@@ -119,11 +117,11 @@
         (:a :href "https://everybodystryingpodcast.com" :target "_blank" "everybodystryingpodcast.com"))
       (:li
         (:a :href "https://instagram.com/lebani.amps" :target "_blank" "lebani.amps"))
-      (:li "more stuff in the works..."))
-    (:p
-      "Things I love: computers, art, philosophy, nature. Things I want to do
-       more of: build and contribute to open-source projects, make fun websites
-       for awesome people, learn lots.")
+      (:li
+        "check out the " (:a :href "/projects" "projects") " page for more..."))
+    (:p "Things I love: computers, art, philosophy, nature. Things I want to do
+         more of: build and contribute to open-source projects, make fun
+         websites for awesome people, learn lots.")
     (:p "Here are the places you can find me online.")
     (:ul :class "horizontal-list"
       (:li
@@ -132,6 +130,43 @@
         (:a :href "https://github.com/aronlebani" :target "_blank" "Github"))
       (:li
         (:a :href "https://au.linkedin.com/in/aron-lebani-50861890" :target "_blank" "Linkedin")))))
+
+(defroute (projects "/projects")
+  (layout (:title "Projects")
+    (:h1 "Projects")
+    (:p "Here are some links to some of the projects that I've worked on.")
+    (:p (:a :href "https://rowenawise.com" :target "_blank" "rowenawise.com")
+        (:br)
+        "Website for Rowena Wise.")
+    (:p (:a :href "https://didirri.com" :target "_blank" "didirri.com")
+        (:br)
+        "Website for Didirri.")
+    (:p (:a :href "https://everybodystryingpodcast.com" :target "_blank" "everybodystryingpodcast.com")
+        (:br)
+        "Website for Everybody's Trying To Find Their Way Home - a podcast by
+         Jen Cloher about Māori and First Nations songwriters who are writing
+         and performing in their tribal languages.")
+    (:p (:a :href "https://instagram.com/lebani.amps" :target "_blank" "lebani.amps")
+        (:br)
+        "Hand made, portable beer-can guitar amps.")
+    (:p (:a :href "https://addons.mozilla.org/en-US/firefox/addon/hummingbird/" :target "_blank" "Hummingbird")
+        (:br)
+        "A browser extension that helps you find your bookmarks faster.")
+    (:p (:a :href "https://crates.io/crates/nanohttp" :target "_blank" "nanohttp")
+        (:br)
+        "A small zero-dependency Rust library for parsing http requests and
+         building valid http responses.")
+    (:hr)
+    (:h2 "Projects by others")
+    (:p "Here are some other projects that I have participated in.")
+    (:p (:a :href "https://youtu.be/n2yjaLo0QLc" :target "_blank" "Melbourne Indie Voices covers 15 Step by Radiohead")
+        (:br)
+        "I am in a choir called Melbourne Indie voices. We perform once a year
+         and make occasional videos such as this one.")
+    (:p (:a :href "https://www.youtube.com/watch?v=OsjVlPyl6TY" :target "_blank" "Nobody's Saviour - Rowena Wise")
+        (:br)
+        "I got to be a part of this incredible film clip for Nobody's Saviour
+         by Rowena Wise.")))
 
 (defroute (now "/now")
   (layout (:title "Now")
@@ -189,31 +224,27 @@ alias sudo=sudo_roulette"))
         (:a :href "/make-coffee" "Make some coffee")))
     (:section :id "2024-04-09"
      (:h2 "April 9, 2024")
-     (:p
-       "TIL: The characters " (:code "^") " and " (:code "$") " used to move to
-        the start and end of the line in vim are the same as the regex characters
-        that match against the start and end of a string."))
+     (:p "TIL: The characters " (:code "^") " and " (:code "$") " used to move
+          to the start and end of the line in vim are the same as the regex
+          characters that match against the start and end of a string."))
     (:section :id "2024-04-07"
       (:h2 "April 7, 2024")
-      (:p
-        "I plan on using this space to share small updates with the world. It
-         might be something short I've written, what I'm up to at the moment,
-         the latest book I'm reading, a photo I've taken... I'll try to keep
-         adding to it over time. See how we go."))))
+      (:p "I plan on using this space to share small updates with the world. It
+           might be something short I've written, what I'm up to at the moment,
+           the latest book I'm reading, a photo I've taken... I'll try to keep
+           adding to it over time. See how we go."))))
 
 (defroute (reading "/reading")
   (layout (:title "Reading")
     (:h1 "Reading")
-    (:p
-      "This is a list of books that changed my life. I've tried to keep it as
-       short as possible.")
+    (:p "This is a list of books that changed my life. I've tried to keep it as
+         short as possible.")
     (:ul
       (:li "Just Kids - " (:i "Patti Smith"))
       (:li "Zen and the Art of Motorcycle Maintenance - " (:i "Robert M. Pirsig"))
       (:li "The Little Prince - " (:i "Antoine de Saint-Exupéry"))   
       (:li "Quiet - " (:i "Susan Cain")))
-    (:p
-      "Some of my other favourite books... (in no particular order)")
+    (:p "Some of my other favourite books... (in no particular order)")
     (:ul
       (:li "Entangled Life - " (:i "Merlin Sheldrake"))
       (:li "Monkey Grip - " (:i "Helen Garner"))
@@ -247,7 +278,8 @@ alias sudo=sudo_roulette"))
   (setf (return-code*) 418)
   (error-layout (:title "Error 418: I'm a teapot")
     (:h1 "Error 418: I'm a teapot.")
-    (:p "Tip me over and pour me out." (:br) (:a :href "/" "Back to homepage") ".")
+    (:p "Tip me over and pour me out." (:br) (:a :href "/" "Back to homepage")
+        ".")
     (:small
       (:a :href "https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol" "Why am I seeing this?")
       " Find out "
