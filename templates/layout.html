@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    {% block head %}
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<title>Aron Lebani</title>
+		<meta name="description" content="This is my website" />
+  	<meta property="og:title" content="Aron Lebani" />
+  	<meta property="og:url" content="https://lebani.dev" />
+  	<meta property="og:type" content="website" />
+  	<meta property="og:description" content="This is my website" />
+  	<link rel="stylesheet" href="public/index.css">
+		<link rel="icon" type="image/png" href="public/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="public/favicon-32x32.png" sizes="32x32">
+    {% endblock head %}
+  </head>
+  <body>
+		<header>
+			<nav>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/projects">Projects</a></li>
+					<li><a href="/reading">Reading</a></li>
+					<li><a href="/now">/now</a></li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+      {% block content %}
+      {% endblock content %}
+		</main>
+		<hr />
+		<footer>
+			<p>
+				I acknowledge the Wurundjeri people as the Traditional custodians of
+				the land on which I live, work, create, play and learn. I pay my
+				respects to their elders past and present, and to all First Nations
+				people and communities.
+			</p>
+			<p>
+				The source code for this website can be found
+				<a href="https://github.com/aronlebani/lebani.dev.git" target="_blank">here</a>.
+			</p>
+			<p>(c) {{ year }} Aron Lebani</p>
+		</footer>
+  </body>
+  <script>
+    {% block script %}
+    {% endblock script %}
+  </script>
+</html>

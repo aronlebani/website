@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<h1>/now</h1>
+	{% for article in articles %}
+		<section id="{{ article.id }}">
+			{% autoescape off %}
+			{{ article.content }}
+			{% endautoescape %}
+		</section>
+	{% endfor %}
+{% endblock content %}

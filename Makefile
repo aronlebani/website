@@ -21,6 +21,6 @@ deploy:
 	rsync -rvsp \
 		--delete \
 		--progress \
-		README.md LICENSE website.asd Makefile main.lisp public \
+		README.md LICENSE website.asd Makefile main.lisp public templates articles \
 		${SERVER}:${DEST}
 	ssh ${SERVER} 'systemctl restart website.service'
