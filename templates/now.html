@@ -3,7 +3,7 @@
 {% block content %}
 	<h1>/now</h1>
 	{% for article in articles %}
-		<section id="{{ article.id }}">
+		<section id="{{ article.date }}">
 			{% autoescape off %}
 			{{ article.content }}
 			{% endautoescape %}
