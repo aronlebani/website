@@ -19,7 +19,7 @@ clean:
 
 deploy:
 	rsync -rvsp --delete $(FILES) $(SERVER):$(DEST)
-	ssh $(SERVER) 'systemctl restart website.service'
+	ssh $(SERVER) 'systemctl restart www-lebani.dev.service'
 
 build:
 	$(LISP) --load website.asd \
