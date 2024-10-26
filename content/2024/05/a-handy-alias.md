@@ -1,4 +1,10 @@
-## May 15, 2024
+---
+title: A handy alias...
+created_at: 2024-05-15
+author_name: Aron Lebani
+kind: article
+---
+# A handy alias
 
 I discovered a handy alias.
 

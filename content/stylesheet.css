@@ -7,28 +7,28 @@
 	font-family: CourierPrime;
 	font-weight: normal;
 	font-style: normal;
-	src: url(./courier-prime.regular.ttf)
+	src: url(/assets/courier-prime.regular.ttf)
 }
 
 @font-face {
 	font-family: CourierPrime;
 	font-weight: bold;
 	font-style: normal;
-	src: url(./courier-prime.bold.ttf)
+	src: url(/assets/courier-prime.bold.ttf)
 }
 
 @font-face {
 	font-family: CourierPrime;
 	font-weight: normal;
 	font-style: italic;
-	src: url(./courier-prime.italic.ttf)
+	src: url(/assets/courier-prime.italic.ttf)
 }
 
 @font-face {
 	font-family: CourierPrime;
 	font-weight: bold;
 	font-style: italic;
-	src: url(./courier-prime.bold-italic.ttf)
+	src: url(/assets/courier-prime.bold-italic.ttf)
 }
 
 body {
@@ -118,4 +118,23 @@ pre {
 .horizontal-list li {
 	list-style-type: none;
 	padding: 0 0.75rem;
+}
+
+.articles,
+.breadcrumbs {
+	padding: 0;
+}
+
+.article-item,
+.breadcrumb-item {
+	list-style-type: none;
+	margin-bottom: 1rem;
+}
+
+.breadcrumb-item {
+	display: inline;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+	content: "/"
 }

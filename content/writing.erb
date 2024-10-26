@@ -1,0 +1,9 @@
+<h1>Writing</h1>
+<ul class="articles">
+  <% sorted_articles.each do |article| %>
+    <li class="article-item">
+      <div><%= article[:created_at].strftime('%B %d, %Y') %></div>
+      <a href="<%= article.path %>"><%= article[:title] %></a>
+    </li>
+  <% end %>
+</ul>

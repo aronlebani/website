@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+compile '/sitemap.*' do
+  filter :erb
+
+  write @item.identifier.without_ext + '.xml'
+end
+
+compile '/feed.*' do
+  filter :erb
+
+  write @item.identifier.without_ext + '.rss'
+end
+
+compile '/[45]??.html' do
+  layout '/error.*'
+
+  write @item.identifier.to_s
+end
+
+compile '/**/*.html' do
+  layout '/default.*'
+
+  write @item.identifier.to_s
+end
+
+compile '/**/*.erb' do
+  filter :erb
+  layout '/default.*'
+
+  write @item.identifier.without_ext + '.html'
+end
+
+compile '/**/*.md' do
+  filter :kramdown
+  layout '/default.*'
+
+  write @item.identifier.without_ext + '.html'
+end
+
+passthrough '/**/*'
+
+layout '/**/*', :erb

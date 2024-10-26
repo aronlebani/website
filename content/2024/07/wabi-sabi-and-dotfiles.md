@@ -1,6 +1,10 @@
-## July 21, 2024
-
-### Wabi-sabi and dotfiles
+---
+title: Wabi-sabi and dotfiles
+created_at: 2024-07-21
+author_name: Aron Lebani
+kind: article
+---
+# Wabi-sabi and dotfiles
 
 One of the things I love about computers and open-source software is that you
 can customize *everything*. If you don't like how something looks or functions,

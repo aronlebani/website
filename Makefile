@@ -1,30 +1,14 @@
-include .env
-
-LISP = sbcl
-EXE = website
-FILES = website.asd Makefile main.lisp public templates articles
+FILES = public/*
+HOST = lebani_dev
+DEST = /var/www/lebani.dev
 
 debug:
-	$(LISP) --load website.asd \
-		--eval '(ql:quickload :website)' \
-		--eval '(website:main)'
-
-start:
-	$(LISP) --load website.asd \
-		--eval '(ql:quickload :website)' \
-		--eval '(website:main)'
-
-clean:
-	rm $(EXE) *.fasl
-
-deploy:
-	rsync -rvsp --delete $(FILES) $(SERVER):$(DEST)
-	ssh $(SERVER) 'systemctl restart www-lebani.dev.service'
+	nanoc compile --watch & nanoc view --live-reload
 
 build:
-	$(LISP) --load website.asd \
-    	--eval '(ql:quickload :website)' \
-		--eval '(asdf:make :website)' \
-		--eval '(quit)'
+	nanoc compile
 
-.PHONY: build deploy clean start debug
+upload: build
+	rsync -rvzp --delete $(FILES) $(HOST):$(DEST)
+
+.PHONY: debug build upload
