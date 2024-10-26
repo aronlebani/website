@@ -1,0 +1,6 @@
+<h1>/now</h1>
+<% loop for article in articles do %>
+	<section id="<%= getf article :date %>">
+		<%= getf article :content %>
+	</section>
+<% end %>

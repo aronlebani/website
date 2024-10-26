@@ -4,71 +4,48 @@
 ;;;;
 ;;;; Aron Lebani <aron@lebani.dev>
  
-(defpackage :website
-  (:use #:cl)
-  (:import-from #:hunchentoot
-                #:create-prefix-dispatcher
-                #:create-folder-dispatcher-and-handler
-                #:easy-acceptor
-                #:start
-                #:stop
-                #:return-code*
-                #:*dispatch-table*)
-  (:import-from #:djula
-                #:add-template-directory
-                #:compile-template*
-                #:render-template*
-                #:*default-template-arguments*)
-  (:import-from #:cl-markdown
-                #:markdown)
-  (:import-from #:bt
-                #:join-thread
-                #:all-threads
-                #:thread-name)
-  (:import-from #:uiop
-                #:directory-files
-                #:quit)
-  (:import-from #:asdf
-                #:system-relative-pathname)
-  (:export #:main))
-
 (in-package #:website)
 
 ;;; --- Helpers ---
-
-(defmacro defroute ((name path) &body body)
-  `(progn
-     (defun ,name ()
-       ,@body)
-     (push (create-prefix-dispatcher ,path #',name)
-           *dispatch-table*)))
-
-(defmacro defstatic (uri path)
-  `(push (create-folder-dispatcher-and-handler ,uri ,path)
-         *dispatch-table*))
 
 (defun get-year ()
   (nth 5
        (multiple-value-list (decode-universal-time (get-universal-time)))))
 
-(defun push-template (template-path)
-  (let ((name (file-namestring template-path)))
-    (setf (gethash name *templates*)
-          (compile-template* name))))
+(defun walk-directory (base-directory fn)
+  (progn
+    (mapc (lambda (path)
+            (funcall fn path))
+          (directory-files base-directory))
+    (mapc (lambda (path)
+            (walk-directory path fn))
+          (subdirectories base-directory))))
 
-(defun register-templates (template-directory)
-  (defparameter *templates*
-    (make-hash-table :test #'equal))
+(defparameter *template-table*
+  (make-hash-table :test :equal))
 
-  (add-template-directory (system-relative-pathname "website" "templates/"))
+(defparameter *layout-table*
+  (make-hash-table :test :equal))
 
-  (mapc #'push-template
-        (directory-files template-directory)))
+(defun compile-pages ()
+  (flet compile-templates (dir table)
+    (walk-directory dir
+                    (lambda (file)
+                      (let ((file-contents (read-file-string file)))
+                        (setf (gethash file table)
+                              (compile-template file-contents)))))
+    (compile-templates *content-directory*
+                       *template-table*)
+    (compile-templates *layout-directory*
+                       *layout-table*)))
 
-(defmacro render (template-name &rest objects)
-  `(render-template* (gethash ,template-name *templates*)
-                     nil
-                     ,@objects))
+(defun render (template &key layout &optional objects)
+  (let ((template-func (gethash template *template-table*)))
+    (let ((template-string (funcall template-func objects)))
+      (if layout
+          (let ((layout-func (gethash layout *layout-table*)))
+            (funcall layout-func (list :yield template-string)))
+          template-string))))
 
 ;;; --- Build articles ---
 
@@ -94,33 +71,44 @@
 
 ;;; --- Define pages ---
 
-(defroute (index "/")
+(defun index ()
   (render "index.html"))
 
-(defroute (projects "/projects")
+(defun projects ()
   (render "projects.html"))
 
-(defroute (now "/now")
-  (render "now.html" :articles *articles*))
+(defun now ()
+  (render "now.html"))
 
-(defroute (reading "/reading")
+(defun reading ()
   (render "reading.html"))
 
-(defroute (quicklinks "/quicklinks")
+(defun quicklinks ()
   (render "quicklinks.html"))
 
-(defroute (make-coffee "/make-coffee")
+(defun make-coffee ()
   (setf (return-code*) 418)
   (render "418.html"))
 
-;;; --- Serve static files ---
-
-(defstatic "/public/" #p"public/")
+(setf *dispatch-table*
+  (nconc
+    (create-folder-dispatcher-and-handler "/public/" #p"public/")
+    (mapcar (lambda (args)
+              (apply #'create-prefix-dispatcher args))
+            '(("/" index)
+              ("/projects" projects)
+              ("/now" now)
+              ("/reading" reading)
+              ("/quicklinks" quicklinks)
+              ("/make-coffee" make-coffee)))))
 
 ;;; --- Entrypoint ---
 
-(defparameter *port*
-  4000)
+(defparameter *port* 4000)
+
+(defparameter *content-directory* #p"content/")
+
+(defparameter *layout-directory* #p"layouts/")
 
 (defparameter *server*
   (make-instance 'easy-acceptor :port *port*))

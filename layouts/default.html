@@ -2,7 +2,6 @@
 
 <html lang="en">
   <head>
-    {% block head %}
   	<meta charset="utf-8" />
   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   	<title>Aron Lebani</title>
@@ -14,7 +13,6 @@
   	<link rel="stylesheet" href="public/index.css">
 		<link rel="icon" type="image/png" href="public/favicon-16x16.png" sizes="16x16">
 		<link rel="icon" type="image/png" href="public/favicon-32x32.png" sizes="32x32">
-    {% endblock head %}
   </head>
   <body>
 		<header>
@@ -28,8 +26,7 @@
 			</nav>
 		</header>
 		<main>
-      {% block content %}
-      {% endblock content %}
+			<%= yield %>
 		</main>
 		<hr />
 		<footer>
@@ -43,11 +40,7 @@
 				The source code for this website can be found
 				<a href="https://github.com/aronlebani/lebani.dev.git" target="_blank">here</a>.
 			</p>
-			<p>(c) {{ year }} Aron Lebani</p>
+			<p>(c) <%= (get-year) %> Aron Lebani</p>
 		</footer>
   </body>
-  <script>
-    {% block script %}
-    {% endblock script %}
-  </script>
 </html>

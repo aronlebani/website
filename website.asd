@@ -5,7 +5,8 @@
   :build-pathname "website"
   :entry-point "website:main"
   :serial t
-  :depends-on ("djula"
+  :depends-on ("eco"
                "hunchentoot"
                "cl-markdown")
-  :components ((:file "main")))
+  :components ((:file "package")
+               (:file "main")))
