@@ -1,0 +1,5 @@
+User-Agent: *
+
+Disallow: /quicklinks.html
+Allow: /
+Sitemap: https://lebani.dev/sitemap.xml
