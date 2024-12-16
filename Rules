@@ -41,3 +41,9 @@ end
 passthrough '/**/*'
 
 layout '/**/*', :erb
+
+preprocess do
+  @items.delete_if do |item|
+    item[:draft] == true
+  end
+end

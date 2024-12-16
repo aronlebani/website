@@ -1,9 +1,10 @@
 module Helpers
   def breadcrumb_title(item)
-    if item.path == '/'
+    case item.path
+    when '/'
       'home'
     else
-      File.basename item.path, '.html'
+      File.basename(item.path, '.html')
     end
   end
 end

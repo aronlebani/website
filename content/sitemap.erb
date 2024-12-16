@@ -1,1 +1,6 @@
-<%= xml_sitemap items: items.select { |i| i.path.end_with? '.html' } %>
+<%=
+  xml_sitemap(items: items.select) do |i|
+    next unless i.path
+    i.path.end_with?('.html')
+  end
+%>
