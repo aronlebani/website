@@ -109,6 +109,15 @@ pre {
 	font-size: 1rem;
 }
 
+blockquote {
+	background-color: lightgrey;
+	padding: 0 1rem;
+	margin: 0;
+	border: 1px solid black;
+	font-size: 1rem;
+	font-style: italic;
+}
+
 .horizontal-list {
 	display: flex;
 	justify-content: center;
