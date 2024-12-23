@@ -1,41 +1,41 @@
 #!/usr/bin/env ruby
 
 compile '/sitemap.*' do
-  filter :erb
+	filter :erb
 
-  write @item.identifier.without_ext + '.xml'
+	write @item.identifier.without_ext + '.xml'
 end
 
 compile '/feed.*' do
-  filter :erb
+	filter :erb
 
-  write @item.identifier.without_ext + '.rss'
+	write @item.identifier.without_ext + '.rss'
 end
 
 compile '/[45]??.html' do
-  layout '/error.*'
+	layout '/error.*'
 
-  write @item.identifier.to_s
+	write @item.identifier.to_s
 end
 
 compile '/**/*.html' do
-  layout '/default.*'
+	layout '/default.*'
 
-  write @item.identifier.to_s
+	write @item.identifier.to_s
 end
 
 compile '/**/*.erb' do
-  filter :erb
-  layout '/default.*'
+	filter :erb
+	layout '/default.*'
 
-  write @item.identifier.without_ext + '.html'
+	write @item.identifier.without_ext + '.html'
 end
 
 compile '/**/*.md' do
-  filter :kramdown
-  layout '/default.*'
+	filter :kramdown
+	layout '/default.*'
 
-  write @item.identifier.without_ext + '.html'
+	write @item.identifier.without_ext + '.html'
 end
 
 passthrough '/**/*'
@@ -43,7 +43,7 @@ passthrough '/**/*'
 layout '/**/*', :erb
 
 preprocess do
-  @items.delete_if do |item|
-    item[:draft] == true
-  end
+	@items.delete_if do |item|
+		item[:draft] == true
+	end
 end
