@@ -14,6 +14,6 @@ view: build
 	nanoc view
 
 upload: build
-	rsync -rvzp --delete $(FILES) $(HOST):$(DEST)
+	rsync -rvzp --delete $(FILES) $(HOST):$(DEST)/public
 
 .PHONY: debug build upload view
