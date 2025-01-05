@@ -4,10 +4,10 @@ would be a more appropriate title. Anyhow, here are some things I've written
 or thought about, or discovered, or just generally felt like putting out there
 on the world wide web in a somewhat chronological order.
 <ul class="articles">
-  <% sorted_articles.each do |article| %>
-    <li class="article-item">
-      <div><%= article[:created_at].strftime('%B %d, %Y') %></div>
-      <a href="<%= article.path %>"><%= article[:title] %></a>
-    </li>
-  <% end %>
+	<% sorted_articles.each do |article| %>
+		<li class="article-item">
+			<div><%= article[:created_at].strftime('%B %d, %Y') %></div>
+			<a href="<%= article.path %>"><%= article[:title] %></a>
+		</li>
+	<% end %>
 </ul>

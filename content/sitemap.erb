@@ -1,6 +1,6 @@
 <%=
-  xml_sitemap(items: items.select) do |i|
-    next unless i.path
-    i.path.end_with?('.html')
-  end
+	xml_sitemap(items: items.select) do |i|
+		next unless i.path
+		i.path.end_with?('.html')
+	end
 %>
