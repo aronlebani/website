@@ -1,20 +1,21 @@
 <!doctype html>
 
 <html lang="en">
-  <head>
-  	<meta charset="utf-8" />
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<title>Aron Lebani</title>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Aron Lebani</title>
 		<meta name="description" content="This is my website" />
-  	<meta property="og:title" content="Aron Lebani" />
-  	<meta property="og:url" content="https://lebani.dev" />
-  	<meta property="og:type" content="website" />
-  	<meta property="og:description" content="This is my website" />
-  	<link rel="stylesheet" href="/stylesheet.css">
+		<meta property="og:title" content="Aron Lebani" />
+		<meta property="og:url" content="https://lebani.dev" />
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="This is my website" />
+		<link rel="stylesheet" href="/stylesheet.css">
 		<link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16">
 		<link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32">
-  </head>
-  <body>
+	</head>
+	<body>
+		<a class="skip-to-content" href="#main">Skip to content</a>
 		<header>
 			<nav>
 				<ul>
@@ -24,8 +25,6 @@
 					<li><a href="/writing.html">writing</a></li>
 				</ul>
 			</nav>
-		</header>
-		<main>
 			<% unless @item.path == '/' %>
 				<ul class="breadcrumbs">
 					<% breadcrumbs_trail.compact.each do |item| %>
@@ -35,6 +34,8 @@
 					<% end %>
 				</ul>
 			<% end %>
+		</header>
+		<main id="main">
 			<%= yield %>
 		</main>
 		<hr />
@@ -46,10 +47,9 @@
 				people and communities.
 			</p>
 			<p>
-				The source code for this website can be found
-				<a href="https://github.com/aronlebani/lebani.dev.git" target="_blank">here</a>.
+				View the <a href="https://github.com/aronlebani/lebani.dev.git" target="_blank">source code</a> for this website.
 			</p>
 			<p>(c) <%= Time.now.year %> Aron Lebani</p>
 		</footer>
-  </body>
+	</body>
 </html>
