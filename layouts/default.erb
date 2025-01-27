@@ -23,17 +23,9 @@
 					<li><a href="/projects.html">projects</a></li>
 					<li><a href="/reading.html">reading</a></li>
 					<li><a href="/writing.html">writing</a></li>
+					<li><a href="/contact.php">get in touch</a></li>
 				</ul>
 			</nav>
-			<% unless @item.path == '/' %>
-				<ul class="breadcrumbs">
-					<% breadcrumbs_trail.compact.each do |item| %>
-						<li class="breadcrumb-item">
-							<a href="<%= item.path %>"><%= breadcrumb_title(item) %></a>
-						</li>
-					<% end %>
-				</ul>
-			<% end %>
 		</header>
 		<main id="main">
 			<%= yield %>

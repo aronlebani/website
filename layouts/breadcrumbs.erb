@@ -1,0 +1,9 @@
+<% unless @item.path == '/' %>
+	<ul class="breadcrumbs">
+		<% breadcrumbs_trail.compact.each do |item| %>
+			<li class="breadcrumb-item">
+				<a href="<%= item.path %>"><%= breadcrumb_title(item) %></a>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

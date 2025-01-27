@@ -2,10 +2,13 @@
 
 source 'https://rubygems.org'
 
-gem 'nanoc', '~> 4.13'
-gem 'nanoc-live'
 gem 'adsf'
 gem 'kramdown'
+gem 'nanoc', '~> 4.13'
+gem 'nanoc-live'
+gem 'pony'
+gem 'sinatra'
+gem 'sinatra-flash'
 
 require 'rbconfig'
 

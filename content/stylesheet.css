@@ -118,6 +118,23 @@ blockquote {
 	font-style: italic;
 }
 
+input,
+textarea {
+	display: block;
+	width: 100%;
+	max-width: 24rem;
+	box-sizing: border-box;
+	margin-bottom: 1rem;
+}
+
+textarea {
+	height: 8rem;
+}
+
+fieldset {
+	border: 0;
+}
+
 .skip-to-content {
 	position: absolute;
 	top: 0;
@@ -169,4 +186,13 @@ img.not-found {
 	width: 50%;
 	margin: 4rem auto;
 	border: 1px solid black;
+}
+
+.error {
+	font-size: 0.75rem;
+	color: crimson;
+}
+
+.success {
+	color: teal;
 }
